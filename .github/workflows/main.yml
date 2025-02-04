@@ -21,7 +21,7 @@ jobs:
         run: bundle exec rubocop
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         versions:
@@ -37,8 +37,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.versions.ruby }}
-      - name: Install sqlite3
-        run: sudo apt-get install -y libsqlite3-dev
+      - name: Install dependencies
+        run: sudo apt-get install -y libsqlite3-dev python2.7
       - name: Install nodejs dependencies
         run: |
           cd spec/dummy_${{ matrix.versions.rails }}
